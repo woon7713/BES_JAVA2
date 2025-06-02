@@ -1,14 +1,15 @@
 public class Main {
     public static void main(String[] args) {
-        final int DAYS_IN_WEEK = 7; //불변하는 값.
-        final double PI = 3.14159;
-        final String GREETING = "Hello, world!";
+        int a = 10;
+        int b = 3;
+        int sum = a + b;
+        System.out.println(sum);
 
-        System.out.println(DAYS_IN_WEEK);
-        System.out.println(PI);
-        System.out.println(GREETING);
+        int difference = a - b;
+        int product = a * b;
+        int quotient = a / b; //division
+        int remainder = a % b;
+        System.out.println(difference + ", " +  product+ ", " +   quotient + ", " +   remainder);
 
-        // Error:
-        // DAYS_IN
     }
 }

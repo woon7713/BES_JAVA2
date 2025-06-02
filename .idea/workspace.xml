@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f62b991b-3240-4f3f-8142-2114658eb0e8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Constant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ConstantExample.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +47,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Constant">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Constant" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Constant" />
       <module name="untitled" />
@@ -65,8 +64,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Constant" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Constant" />
       </list>
     </recent_temporary>
   </component>
@@ -79,7 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1748580471465</updated>
       <workItem from="1748580472461" duration="6457000" />
-      <workItem from="1748822795130" duration="3085000" />
+      <workItem from="1748822795130" duration="4413000" />
     </task>
     <servers />
   </component>
