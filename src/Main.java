@@ -1,12 +1,14 @@
 public class Main {
     public static void main(String[] args) {
-        double salary = 52000.23;
-        int bonus = 5000;
+        final int DAYS_IN_WEEK = 7; //불변하는 값.
+        final double PI = 3.14159;
+        final String GREETING = "Hello, world!";
 
-        double totalSalary = salary + bonus;
-        System.out.println("Salary: " + totalSalary);
-        int total = (int) salary + bonus;
+        System.out.println(DAYS_IN_WEEK);
+        System.out.println(PI);
+        System.out.println(GREETING);
 
-        System.out.println(total);
+        // Error:
+        // DAYS_IN
     }
 }
