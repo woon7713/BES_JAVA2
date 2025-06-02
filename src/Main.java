@@ -1,15 +1,20 @@
 public class Main {
     public static void main(String[] args) {
-        int a = 10;
-        int b = 3;
-        int sum = a + b;
-        System.out.println(sum);
+        int a = 10, b = 3;
 
-        int difference = a - b;
-        int product = a * b;
-        int quotient = a / b; //division
-        int remainder = a % b;
-        System.out.println(difference + ", " +  product+ ", " +   quotient + ", " +   remainder);
+        a += 5; // 복합대입 연산자, a = a + 5;
+
+        System.out.println(a);
+
+        b -= 1;
+        System.out.println(b);
+        b *= 3;
+        System.out.println(b);
+        b /= 2;
+        System.out.println(b);
+        b %= 2;
+        System.out.println(b);
+
 
     }
 }
