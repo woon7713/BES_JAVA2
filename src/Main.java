@@ -1,22 +1,15 @@
 public class Main {
     public static void main(String[] args) {
-        int a = 10, b = 3;
+        int num = 0;
 
-        ++a;
-        System.out.println(a);
-
-        --b;
-        System.out.println(b);
-
-        a++;
-        System.out.println(a);
-
-        b--;
-        System.out.println(b);
-
-        // 후위 연산 직관적 확인
-        int c = a++; // 후위연산, 할당 후 증가
-        System.out.println(c + ", " + a);
+        System.out.print("num은 ");
+        if (num > 0) {
+            System.out.println("양수");
+        } else if (num < 0) {
+            System.out.println("음수");
+        } else {
+            System.out.println("0");
+        }
 
     }
 }
