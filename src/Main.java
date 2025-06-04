@@ -1,31 +1,12 @@
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
+        int number = 2147483647;
+        String binaryString = Integer.toBinaryString(number); // Integer -> int의 참조타입, 기능이 존재함.
+        String hexString = Integer.toHexString(number);
 
-        Scanner in = new Scanner(System.in); // Scanner 객체 생성
-        int input;
-
-        do {
-            System.out.println("자판기입니다.");
-            input = in.nextInt();
-
-            switch (input) {
-                case 1:
-                    System.out.println("coke");
-                    break;
-                case 2:
-                    System.out.println("cider");
-                    break;
-                case 3:
-                    System.out.println("3 입력");
-                    break;
-                default:
-                    System.out.println("잘못된 입력");
-            }
-
-        } while (input != 0);
-
+        System.out.println("Decimal: " + number);
+        System.out.println("Binary: " + binaryString);
+        System.out.println("Hexadecimal: " + hexString);
 
     }
 }
