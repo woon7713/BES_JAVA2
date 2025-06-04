@@ -1,70 +1,28 @@
 public class Main {
-    // 클래스 내부(필드 영역) enum 선언
-    public enum Day {
-        MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY,
-        SATURDAY, SUNDAY
-    }
-
     public static void main(String[] args) {
-        int num = 0;
+        int age = 20;
+        boolean hasID = true;
 
-        switch (num) {
-            case 0:
-                System.out.println("num은 0");
-                break;
-            case 1:
-                System.out.println("num은 1");
-                break;
-            case 2:
-                System.out.println("num은 2");
-                break;
-            case 3:
-                System.out.println("num은 3");
-                break;
+        if(age >= 19 && hasID){
+            System.out.println("접속 가능");
+        }
+        else
+            System.out.println("접속 불가");
+
+        boolean isWeekend = false;
+        boolean isHoliday = true;
+
+        if (isWeekend || isHoliday) {
+            System.out.println("쉴 수 있다");
         }
 
-        String mood = "idontknow";
-
-        switch(mood){
-            case "happy":
-                System.out.println("기분은 happy");
-            case "sad":
-                System.out.println("기분은 sad");
-                break;
-            case "angry":
-                System.out.println("기분은 angry");
-            default:
-                System.out.println("내 기분을 몰라");
+        boolean isRaining = true;
+        if (!isRaining) {
+            System.out.println("맑음");
         }
-
-        mood = "happy";
-
-        if(mood == "happy") {
-            System.out.println("나는 행복하다. 왜냐하면 행복하기 때문이다.");
-        } else if (mood == "sad") {
-            System.out.println("슬퍼");
-        } else if (mood == "angry") {
-            System.out.println("기분은 angry");
-        } else{
-            System.out.println("내 기분 몰라");
+        else{
+            System.out.println("비온다");
         }
-
-
-        Day today = Day.MONDAY;
-
-        switch (today) {
-            case MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY:
-                System.out.println("Weekday");
-                break;
-            case SATURDAY, SUNDAY:
-                System.out.println("Weekend");
-                break;
-            default:
-                System.out.println("Unknown day");
-        }
-
-
-
 
 
 
