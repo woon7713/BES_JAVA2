@@ -1,13 +1,15 @@
 public class Main {
-    public static int addNumber(int a, int b) {
-        int result = a + b;
-
-        return result;
-    }
-
     public static void main(String[] args) {
-        int number = addNumber(10, 7);
+        char asciiChar = 'A';
+        System.out.println("Character: " + asciiChar);
 
-        System.out.println(number);
+        int asciiCode = (int) asciiChar;
+        System.out.println("ASCII Code: " + asciiCode);
+
+        char koreanChar = '가';
+        System.out.println("Character: " + koreanChar);
+
+        int unicodeCode = (int) koreanChar;
+        System.out.println("Unicode Code: U+" + Integer.toHexString(unicodeCode).toUpperCase());
     }
 }
