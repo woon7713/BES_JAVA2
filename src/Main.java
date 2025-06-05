@@ -1,12 +1,28 @@
 public class Main {
     public static void main(String[] args) {
-        int number = 2147483647;
-        String binaryString = Integer.toBinaryString(number); // Integer -> int의 참조타입, 기능이 존재함.
-        String hexString = Integer.toHexString(number);
+/*        for (int i = 1; i <= 10; i++) {
+            if (i == 7) {
+                break;
+            }
+            System.out.println(i);
+        }
 
-        System.out.println("Decimal: " + number);
-        System.out.println("Binary: " + binaryString);
-        System.out.println("Hexadecimal: " + hexString);
+        for (int i = 1; i <= 20; i++) {
+            if (i % 3 != 0) {
+                continue;
+            }
+            System.out.println(i);
+        }*/
+
+        for (int i = 1; i <= 20; i++) {
+            if(i % 5 == 0){
+                continue;
+            }
+            if(i >= 15){
+                break;
+            }
+            System.out.print(i + " ");
+        }
 
     }
 }
