@@ -1,40 +1,16 @@
-class Car {
-    String brand;
-    int year;
-    String model;
-    String nickName;
-
-    public  Car(String brand, int year, String model) {
-        this.brand = brand;
-        this.year = year;
-        this.model = model;
-    }
-
-
-    public  Car(String brand, int year, String model, String nickName) {
-        this.brand = brand;
-        this.year = year;
-        this.model = model;
-        this.nickName = nickName;
-    }
-
-    public String displayinfo() {
-        String info = "차의 브랜드는 " + brand + ", 연식은 " + year + ", 모델명은 " + model + "입니다.";
-        if (nickName != null && !nickName.equals("")) {
-            info += " 별명은 " + nickName + "입니다.";
-        }
-        return info;
-    }
-
-}
-
 public class Main {
     public static void main(String[] args) {
-        Car c1 = new Car("Hyundai",15, "sonata");
-        Car c2 = new Car("Mercedes-Benz", 23, "E320d", "붕붕이");
+        String name = "Son";
+        int backNumber = 7;
+        double pi = 3.14159265359;
 
-        System.out.println(c1.displayinfo());
-        System.out.println(c2.displayinfo());
+        System.out.println((name + backNumber).getClass().getName()); // 참조타입 체크, 문자열 결합
+        System.out.print("탭\t탭\t탭\n그리고 줄바꿈과 \"큰따옴표\" 마지막으로 역슬래시 \\");
+        System.out.println(); // 아무것도없이 사용해서 줄바꿈으로도 가능
+        System.out.printf("%.2f\n", pi); // 개행(줄바꿈)이 없음, 소수점 2자리 까지
+        System.out.printf("%.8f\n", pi); // 소수점 8자리까지
+        System.out.print(pi); // 그대로
+        System.out.printf("\n%s의 등번호는 %d", name, backNumber);
+
     }
-
 }
