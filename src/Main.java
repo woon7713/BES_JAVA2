@@ -1,25 +1,40 @@
-class Person{
-    String name;
-    int age;
+class Car {
+    String brand;
+    int year;
+    String model;
+    String nickName;
 
-    public Person(String name, int age) {
-        this.name = name;
-        this.age = age;
+    public  Car(String brand, int year, String model) {
+        this.brand = brand;
+        this.year = year;
+        this.model = model;
     }
 
-    void hi(){
-        System.out.println(name + age);
+
+    public  Car(String brand, int year, String model, String nickName) {
+        this.brand = brand;
+        this.year = year;
+        this.model = model;
+        this.nickName = nickName;
     }
+
+    public String displayinfo() {
+        String info = "차의 브랜드는 " + brand + ", 연식은 " + year + ", 모델명은 " + model + "입니다.";
+        if (nickName != null && !nickName.equals("")) {
+            info += " 별명은 " + nickName + "입니다.";
+        }
+        return info;
+    }
+
 }
 
-public class Main{
+public class Main {
     public static void main(String[] args) {
-        Person person = new Person("Alice", 20); //1
+        Car c1 = new Car("Hyundai",15, "sonata");
+        Car c2 = new Car("Mercedes-Benz", 23, "E320d", "붕붕이");
 
-//        person.name = "홍길동"; //2
-//        person.age = 20; //3
-
-        person.hi();//4
-
+        System.out.println(c1.displayinfo());
+        System.out.println(c2.displayinfo());
     }
+
 }
