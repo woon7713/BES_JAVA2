@@ -4,64 +4,51 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        boolean check = true;
-        int itemNum = 3;
-        int money = 0;
-        int price = 0;
-        int lastPrice = 0;
+        double num1 = 0;
+        double num2 = 0;
+        char operator;
+        double result = 0;
 
-        System.out.print("자판기 입니다. 돈을 넣으세요.\n투입금액 입력: ");
-        money = sc.nextInt();
-        System.out.println("0: 종료 / 1: 콜라(1000원) / 2: 사이다(900) / 3: 제로콜라(1200)");
-        do {
-            System.out.print("입력하세요: ");
-            String item ="";
-            int choice = sc.nextInt();
-            switch (choice) {
-                case 0:
-                    check = false;
+        System.out.print("처음 숫자를 입력: ");
+        num1 = sc.nextDouble();
+        result = num1;
+
+        double pastNum = 0;
+
+        while (true) {
+            System.out.print("연산자 입력 (+, -, *, /) - '#' 입력시 종료: ");
+            operator = sc.next().charAt(0);
+            if(operator == '#'){
+                System.out.println("강제종료");
+                return;
+            }
+
+            System.out.print("다음 숫자를 입력: ");
+            num2 = sc.nextDouble();
+
+            pastNum = result; // 연산 전 값 저장
+            switch (operator){
+                case '+':
+                    result += num2;
                     break;
-                case 1:
-                    item = "콜라";
-                    price = 1000;
+                case '-':
+                    result -= num2;
                     break;
-                case 2:
-                    item = "사이다";
-                    price = 900;
+                case '*':
+                    result *= num2;
                     break;
-                case 3:
-                    item = "제로 콜라";
-                    price = 1200;
-                    break;
+                case '/':
+                    if(num2 != 0){ // NaN, Infinity 결과 방지
+                        result /= num2;
+                        break;
+                    }
                 default:
-                    price = 0;
-                    System.out.println("비정상 입력 감지.. 입력 재시도.. ");
+                    System.out.println("잘못된 입력.. 다시 입력..");
             }
+            System.out.printf("%.2f %c %.2f = %.2f\n\n", pastNum, operator, num2, result);
+        }
 
-            money -= price;
-            lastPrice = price; // 마지막 거래 가격 기억
 
-            if(choice > 0 && choice <= itemNum && money > 0){
-                System.out.println(item + "이(가) 나왔습니다.");
-                System.out.println("남은 금액 : " + money);
-            }
-
-            if (money < 0){
-                money += lastPrice; // 마이너스 거래 취소
-
-                System.out.println("추가금을 투입하시겠습니까..?");
-                System.out.println("아니요(종료): 0 / 예(추가금 투입): 1");
-                choice = sc.nextInt();
-                if (choice == 1) {
-                    System.out.print("자판기 입니다. 추가금을 넣으세요.\n투입금액 입력: ");
-                    money += sc.nextInt();
-                } else if (choice == 0) {
-                    check = false;
-                }
-            }
-        }while (check);
-
-        System.out.println("자판기 종료.. \t 남은 금액: " + money);
 
     }
 }
