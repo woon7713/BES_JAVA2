@@ -1,30 +1,28 @@
-class Person{
-    int a = 0;
-    static int b = 1;
+class Car{
+    String brand;
 
-    public static void hi(){
-        System.out.println("hi static method");
-        //System.out.println(a); // 접근 X
-        System.out.println(b);
+    public Car(String brand) {
+        this.brand = brand;
     }
 
-    public void hello() {
-        System.out.println("hello");
+    class Engine{
+        public void start() {
+            System.out.println("The engine of " + brand + " is starting.");
+        }
     }
 
+    public void startEngine() {
+        Engine engine = new Engine();
+        engine.start();
+
+    }
 
 }
 
 public class Main {
     public static void main(String[] args) {
-        //static 메서드는 클래스 이름으로 직접 호출
-        Person.hi();
-
-        //인스턴스 메서드는 객체를 생성해 호출
-        Person p = new Person();
-        p.hello();
-
-
+        Car car = new Car("붕붕");
+        car.startEngine();
 
 
     }
