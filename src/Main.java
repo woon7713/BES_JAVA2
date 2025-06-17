@@ -1,16 +1,14 @@
 public class Main {
+    public static int convertToInt(String s) throws NumberFormatException {
+        return Integer.parseInt(s);
+    }
     public static void main(String[] args) {
-        int a = 10;
-        int b = 0;
-
+        String strNum = "1234a";
         try {
-            int result = a/b;
-            System.out.println("result : " + result);
-        } catch (ArithmeticException e) {
-            System.out.println(e);
-            System.out.println(e.getMessage());
-            System.out.println("0으로 나누려고 시도함");
-
+            int num = convertToInt(strNum);
+            System.out.println("변환 결과: " + num);
+        } catch (NumberFormatException e) {
+            System.out.println("숫자 형식 오류!");
         }
 
 
