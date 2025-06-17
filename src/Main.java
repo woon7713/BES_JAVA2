@@ -1,25 +1,16 @@
 public class Main {
     public static void main(String[] args) {
-        String test = "2,43";
+        int a = 10;
+        int b = 2;
 
         try {
-            int result = multiply(test);
-            System.out.println(result);
-        } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
-            System.out.println("에러!");
+            int result = a / b;
+
+            System.out.println("Result: " + result);
+        } catch(ArithmeticException e) {
+            System.out.println("Error: 0으로 나눔.");
+        } finally {
+            System.out.println("Cleanup: 이 블록은 항상 실행됩니다.");
         }
     }
-
-    public static int multiply(String input) throws NumberFormatException {
-        String[] splitInput = input.split(",");
-        int[] results = new int[2];
-
-        for(int i = 0; i < splitInput.length; i++) {
-            results[i] = Integer.parseInt(splitInput[i]);
-        }
-
-        return results[0] * results[1];
-    }
-
 }
