@@ -1,22 +1,13 @@
-@FunctionalInterface
-interface MathOperation {
-    int operate(int a, int b);
-}
-@FunctionalInterface
-interface Operation {
-    int apply(int x);
-}
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
-        MathOperation add = (a, b) -> a + b;
-        MathOperation multiply = (a, b) -> a * b;
-        System.out.println(add.operate(5, 3));
-        System.out.println(multiply.operate(5, 3));
+        String[] names = {"홍길동", "김철수", "영희"};
 
-        Operation square = (x) -> x * x;
-        System.out.println(square.apply(7));
+        // 람다식 방식
+        Arrays.stream(names).forEach(name -> System.out.println(name));
 
-
-
+        // 메서드 참조 방식 (더 간단히)
+        Arrays.stream(names).forEach(System.out::println);
     }
 }
