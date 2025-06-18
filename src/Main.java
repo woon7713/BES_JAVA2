@@ -2,13 +2,17 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Set<String> treeSet = new TreeSet<>();
-        treeSet.add("Banana");
-        treeSet.add("Apple");
-        treeSet.add("Banana");
-        treeSet.add("Cherry");
+        Map<String, Integer> fruitPrices = new HashMap<>();
+        fruitPrices.put("Apple", 1000);
+        fruitPrices.put("Banana", 600);
+        int sum = 0;
 
-        System.out.println(treeSet); // [Apple, Banana, Cherry]
+        for (Map.Entry<String, Integer> entry: fruitPrices.entrySet()) {
+            sum += entry.getValue();
+        }
+
+        System.out.println(sum/fruitPrices.size());
+
 
     }
 }
