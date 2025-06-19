@@ -1,6 +1,9 @@
-class Box{
-    public static <T> void displayArray(T[] array) {
-        for (T element : array) {
+import java.util.ArrayList;
+import java.util.List;
+
+class Box {
+    public static <T> void displayArray(List<T> array) {
+        for(T element: array) {
             System.out.println(element);
         }
     }
@@ -8,13 +11,18 @@ class Box{
 
 public class Main {
     public static void main(String[] args) {
-        Integer[] numbers = {1, 2, 3, 4, 5};
-        String[] words = {"apple", "banana", "cherry"};
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        numbers.add(5);
 
-        //static이라 바로 실행
+        List<String> words = new ArrayList<>();
+        words.add("apple");
+        words.add("banana");
+
         Box.displayArray(numbers);
         Box.displayArray(words);
-
-
     }
 }
