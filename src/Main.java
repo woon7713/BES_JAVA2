@@ -1,30 +1,21 @@
-class Box<T>{
-    private T content;
-
-    public Box(T content) {
-        this.content = content;
+class Box{
+    public static <T> void displayArray(T[] array) {
+        for (T element : array) {
+            System.out.println(element);
+        }
     }
-
-    public T getContent(){
-        return content;
-    }
-
-    public void setContent(T content) {
-        this.content = content;
-    }
-
-    public <E> void printContent(E extraInfo) {
-        System.out.println(content + " " + extraInfo);
-    }
-
 }
 
 public class Main {
     public static void main(String[] args) {
-        Box<String> stringBox = new Box<>("난 커서 박스가 될래.");
-        System.out.println(stringBox.getContent());
-        stringBox.setContent("실패!");
-        System.out.println(stringBox.getContent());
-        stringBox.printContent(123);
+        Integer[] numbers = {1, 2, 3, 4, 5};
+        String[] words = {"apple", "banana", "cherry"};
+
+        //static이라 바로 실행
+        Box.displayArray(numbers);
+        Box.displayArray(words);
+
+
+
     }
 }
