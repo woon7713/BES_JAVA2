@@ -1,17 +1,17 @@
-class MyRunnable implements Runnable{
-    @Override
-    public void run(){
-        System.out.println("Runndable 실행중");
-    }
-
-}
-
 public class Main {
-
     public static void main(String[] args) {
-        Thread thread = new Thread(new MyRunnable());
+        new Thread(() -> {
+            System.out.println("Runnable 실행 중");
 
-        thread.start();
+            for(int i = 1; i <= 5; i++) {
+                try {
+                    Thread.sleep(5000);
 
+                    System.out.println(i);
+                } catch(InterruptedException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }).start();
     }
 }
