@@ -1,19 +1,29 @@
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
+class MyThread extends Thread {
+    @Override
+    public void run() {
+        // 실행할 작업 작성
+        for (int i = 0; i < 5; i++) {
+            System.out.println("MyThread: " + i);
+            try {
+                Thread.sleep(5000);
+
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
+
+            }
+        }
+    }
+}
 
 public class Main {
 
     public static void main(String[] args) {
-        List<Double> values = Arrays.asList(10.0, 20.0, 30.0);
+        MyThread thread = new MyThread();
 
-        double avg = values.stream()
-                .mapToDouble(Double::doubleValue)
-                .average()
-                .orElse(0.0); // 기본값 설정, 안전장치 . 0으로 나눌수없음, 갯수가 0일땐 평균이 0
+        thread.start();
 
-        System.out.println(avg);
-
+        thread.run();
+        System.out.println("나를 막지마");
 
 
     }
