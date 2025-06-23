@@ -1,1 +1,0 @@
-memberSearchIndex = [{"p":"<Unnamed>","c":"Calculator","l":"add(int, int)","u":"add(int,int)"},{"p":"<Unnamed>","c":"Calculator","l":"addNumber(int, int)","u":"addNumber(int,int)"},{"p":"<Unnamed>","c":"Calculator","l":"Calculator()","u":"%3Cinit%3E()"}];updateSearchResults();
