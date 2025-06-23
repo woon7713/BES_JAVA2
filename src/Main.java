@@ -1,41 +1,59 @@
-class Counter {
-    private int count = 0;
 
-    public synchronized void increment() {
-        count++;
+class SumThread extends Thread {
+    private int[] array;
+    private int start, end;
+    private int partialSum = 0;
+
+    public SumThread(int[] array, int start, int end) {
+        this.array = array;
+        this.start = start;
+        this.end = end;
+    }
+    @Override
+    public void run() {
+        for (int i = start; i < end; i++) {
+            partialSum += array[i];
+        }
     }
 
-    public int getCount() {
-        return count;
+    public int getPartialSum(){
+        return partialSum;
     }
+
 }
 
 public class Main {
     public static void main(String[] args) {
+        int[] numbers = new int[101];
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = i + 1;
+        }
 
-        Counter counter = new Counter();
-        Runnable task = () -> {
-            for (int i = 0; i < 1000; i++) {
-                counter.increment();
-            }
-        };
+        int numThreads = 4;
+        int chunkSize = numbers.length / numThreads;
+        SumThread[] threads = new SumThread[numThreads];
 
-        Thread[] threads = new Thread[5];
-        for (int i = 0; i < 5; i++) {
-            threads[i] = new Thread(task);
+        for (int i = 0; i < numThreads; i++) {
+            int start = i * chunkSize;
+            int end = (i == numThreads - 1) ? numbers.length : start + chunkSize;
+
+            threads[i] = new SumThread(numbers, start, end);
             threads[i].start();
         }
-        for (Thread t : threads) {
-            try{
-                t.join(); // 각 스레드를 기다림
 
+
+        int totalSum = 0;
+        try {
+            for (SumThread thread : threads) {
+                thread.join();
+                System.out.println(thread.getPartialSum());
+                totalSum += thread.getPartialSum();
             }
-            catch (InterruptedException e){
-                System.out.println("Intterupted");
-            }
+        } catch (InterruptedException e) {
+            System.out.println("Thread interrupted: " + e.getMessage());
         }
-        System.out.println("Final count: " + counter.getCount());
 
+        System.out.println("Total sum: " + totalSum);
 
 
     }
