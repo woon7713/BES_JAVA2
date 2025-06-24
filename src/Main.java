@@ -1,60 +1,54 @@
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
+import java.lang.annotation.*;
 import java.lang.reflect.Method;
 
-class ReflectionDemo {
-    public  String noSecret = "안비밀입니다.";
-    private String secret = "비밀입니다.";
+@Retention(RetentionPolicy.RUNTIME) // 런타임에도 어노테이션이 존재할 수 있게 해야지 리플렉션에서 확인가능. 컴파일까지 해서 런타임에 안올려서 자원을 아낄것이냐 등등, 런타임까지 갈 필요없으면 클래스레벨에서 멈추면 됨.
+@Target({ElementType.TYPE, ElementType.METHOD})
+@interface CustomInfo {
+    String author();
+    String date();
+    int version() default 1;
+}
 
-    public ReflectionDemo() {
-        System.out.println("ReflectionDemo 생성자 실행");
+
+@CustomInfo(author = "John Doe", date = "2025-03-25", version = 2)
+class Demo{
+    @CustomInfo(author = "Jane Smith", date = "2025-03-26")
+    public void display() {
+        System.out.println("Display method executed.");
     }
 
-    public String greet(String name) {
-        return "Hello, " + name;
-    }
-
-    private String reveal(String code) {
-        return "Access granted to: " + code;
-    }
 }
 
 public class Main {
+
     public static void main(String[] args) {
-        Class<?> clazz = ReflectionDemo.class;
+        Demo demo = new Demo(); // 리플렉션으로 인스턴스까지 만들었는데 안되는건가? 아니면 안한건가 예제에서
+        Class<?> demoClass = demo.getClass();
+        if (demoClass.isAnnotationPresent(CustomInfo.class)) { // 어노테이션 존재 체크
+            CustomInfo info = demoClass.getAnnotation(CustomInfo.class); // 실제 어노테이션 객체 가져오기
+            System.out.println("작성자: " + info.author());
+            System.out.println("작성일: " + info.date());
+            System.out.println("버전: " + info.version());
 
-        System.out.println("클래스 이름: " + clazz.getName());
+            CustomInfo classInfo = demoClass.getAnnotation(CustomInfo.class);
+            System.out.println("Class -> Author: " + classInfo.author() +
+                    ", Date: " + classInfo.date() +
+                    ", Version: " + classInfo.version());
 
-        System.out.println("\n[필드 목록]");
-        Field[] fields = clazz.getDeclaredFields();
-        for(Field field: fields) {
-            System.out.println("필드: " + field.getName());
-        }
-
-        System.out.println("\n[메서드 목록]");
-        Method[] methods = clazz.getDeclaredMethods();
-        for(Method method: methods) {
-            System.out.print("메서드: " + method.getName());
-            for(Class<?> paramType: method.getParameterTypes()) {
-                System.out.println(" 파라미터 타입: " + paramType.getSimpleName());
+            try {
+                Method m = demoClass.getMethod("display");
+                if (m.isAnnotationPresent(CustomInfo.class)) {
+                    CustomInfo mi = m.getAnnotation(CustomInfo.class);
+                    System.out.println("Method -> Author: " + mi.author() +
+                            ", Date: " + mi.date() +
+                            ", Version: " + mi.version());
+                }
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
             }
+
         }
 
-        try {
-            Object instance = clazz.getDeclaredConstructor().newInstance();
 
-            Method greetMethod = clazz.getMethod("greet", String.class);
-            Object greetResult = greetMethod.invoke(instance, "h662");
-            System.out.println("\n [퍼블릭 메서드 실행 결과]");
-            System.out.println("greet(): " + greetResult);
-            Method revealMethod = clazz.getDeclaredMethod("reveal", String.class);
-            revealMethod.setAccessible(true);
-
-            Object revealResult = revealMethod.invoke(instance, "abcd");
-            System.out.println("\n [프라이빗 메서드 실행 결과]");
-            System.out.println("reveal(): " + revealResult);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
