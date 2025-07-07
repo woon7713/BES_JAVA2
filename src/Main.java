@@ -1,53 +1,25 @@
-import java.io.IOException;
-import java.nio.Buffer;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.Arrays;
-
 public class Main {
-    public static void writeFile(String filename, String content) {
-        Path filePath = Paths.get(filename);
+    public static void main(String[] args) throws InterruptedException {
+        Thread worker = new Thread(() -> {
+            try{
+                while (!Thread.currentThread().isInterrupted()) {
+                    System.out.println("Working..");
 
-        try (FileChannel writeChannel = FileChannel.open(filePath, StandardOpenOption.CREATE, StandardOpenOption.WRITE)) {
-            ByteBuffer buffer = ByteBuffer.allocate(1024);
+                    Thread.sleep(500);
+                }
 
-            buffer.put(content.getBytes());
-            buffer.flip();
-            writeChannel.write(buffer);
-            System.out.println("파일을 성공적으로 작성 완료했습니다.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void readFile(String filename) {
-        Path filePath = Paths.get(filename);
-
-        try (FileChannel readChannel = FileChannel.open(filePath, StandardOpenOption.READ)) {
-            ByteBuffer buffer = ByteBuffer.allocate(1024);
-            int bytesRead = readChannel.read(buffer);
-
-            while (bytesRead != -1) {
-                buffer.flip();
-
-                String chunk = StandardCharsets.UTF_8.decode(buffer).toString();
-                System.out.print(chunk);
-
-                buffer.clear();
-                bytesRead = readChannel.read(buffer);
+                System.out.println("Worker: 작업 완료");
+            } catch(InterruptedException e) {
+                System.out.println("Worker: 중단 신호 수신, 정리 작업 후 종료");
             }
-            System.out.println("\n파일 읽기가 완료 되었습니다.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+        });
 
-    public static void main(String[] args) {
-        writeFile("dinner-menu.txt", "볶음밥\n삼겹살\n냉면");
-        readFile("dinner-menu.txt");
+        worker.start();
+        Thread.sleep(2000);
+        System.out.println("메인에서 인터럽트 신호 전송");
+        worker.interrupt();
+        worker.join();
+        System.out.println("Worker: 작업 완료");
+
     }
 }
